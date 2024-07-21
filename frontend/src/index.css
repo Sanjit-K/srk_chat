@@ -8,5 +8,25 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow:hidden;
+}
 
+/*       ScrollBar 1        */
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #555;
+  border-radius: 50rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #161515;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #3b3535;
 }
