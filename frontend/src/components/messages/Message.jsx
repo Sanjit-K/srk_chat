@@ -9,6 +9,7 @@ const Message = ({message}) => {
     const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic
     const bubblebgcolor = fromMe ? "bg-blue-600" : "bg-gray-700"
     console.log(message)
+    const d = new Date(message.createdAt)
   return (
     <>
         <div className={`chat ${chatClassName}`}>
@@ -21,12 +22,11 @@ const Message = ({message}) => {
                 {authUser.username}
                 <span>&nbsp;</span>
                 
-                <time className="text-xs opacity-50 ">{message.createdAt}</time>
             </div>
             
-            <div className={`chat-bubble ${bubblebgcolor} text-white`}>{message.message}</div>
+            <div className={`chat-bubble ${bubblebgcolor} text-white text-balance`}>{message.message}</div>
             
-            <div className="chat-footer opacity-50">Delivered</div> 
+            <div className="chat-footer opacity-50">{`${d.getHours()}:${d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()}`} </div> 
         </div>
 
     </>
