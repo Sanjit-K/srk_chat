@@ -1,37 +1,30 @@
 import React from 'react'
-
-const Message = () => {
+import { useAuthContext } from '../../context/AuthContext'
+import useConversation from '../../store/useConversation'
+const Message = ({message}) => {
+    const {authUser} = useAuthContext()
+    const {selectedConversation} = useConversation()
+    const fromMe = message.senderId === authUser._id
+    const chatClassName = fromMe ? "chat-end" : "chat-start"
+    const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic
+    const bubblebgcolor = fromMe ? "bg-blue-600" : "bg-gray-700"
+    console.log(message)
   return (
     <>
-        <div className='chat chat-end'>
+        <div className={`chat ${chatClassName}`}>
             <div className='chat-image avatar'>
                 <div className='w-10 rounded-full'>
-                    <img src="https://avatar.iran.liara.run/username?username=john+" />
+                    <img src={profilePic} />
                 </div>
             </div>
             <div className="chat-header">
-                Obi-Wan Kenobi
+                {authUser.username}
                 <span>&nbsp;</span>
-                <time className="text-xs opacity-50 ">12:45</time>
+                
+                <time className="text-xs opacity-50 ">{message.createdAt}</time>
             </div>
             
-            <div className="chat-bubble">hello</div>
-            
-            <div className="chat-footer opacity-50">Delivered</div> 
-        </div>
-        <div className='chat chat-start'>
-            <div className='chat-image avatar'>
-                <div className='w-10 rounded-full'>
-                    <img src="https://avatar.iran.liara.run/username?username=john+" />
-                </div>
-            </div>
-            <div className="chat-header">
-                Obi-Wan Kenobi
-                <span>&nbsp;</span>
-                <time className="text-xs opacity-50 ">12:45</time>
-            </div>
-            
-            <div className="chat-bubble">hello</div>
+            <div className={`chat-bubble ${bubblebgcolor} text-white`}>{message.message}</div>
             
             <div className="chat-footer opacity-50">Delivered</div> 
         </div>
