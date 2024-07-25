@@ -24,7 +24,8 @@ export const signup = async (req, res) =>{
         const newUser = new User({
             username,
             password: hashedPassword,
-            profilePic: pfp
+            profilePic: pfp,
+            status:"I'm new here!"
         })
         if(newUser){
             //GENERATE JWT TOKEN
@@ -33,7 +34,8 @@ export const signup = async (req, res) =>{
             res.status(201).json({
                 _id: newUser._id,
                 username:newUser.username,
-                profilePic: newUser.profilePic
+                profilePic: newUser.profilePic,
+                status: newUser.status
             })
         }else{
             res.status(400).json({error:"invalid user data"})
@@ -56,6 +58,7 @@ export const login = async (req, res) =>{
             _id:user._id,
             username:user.username,
             profilePic:user.profilePic,
+            status: user.status
         })
     } catch (error) {
         console.log("Error in login controller", error.message)

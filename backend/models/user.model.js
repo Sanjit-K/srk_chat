@@ -12,6 +12,9 @@ const userSchema = new mongoose.Schema({
     profilePic:{
         type:String,
         default:"",
+    },status:{
+        type:String,
+        default:"I'm new here!"
     }
 }, {timestamps:true})
 
