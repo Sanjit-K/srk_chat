@@ -19,7 +19,7 @@ const signup = () => {
         <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border'>
             <h1 className='text-3xl font-semibold text-center text-gray-300'>
                 Sign Up
-                <span className='text-gray-500'> ChatApp</span>
+                <span className='text-gray-500'> SKchat</span>
             </h1>
             <form onSubmit={handleSubmit}>
             <label className="input input-bordered flex items-center gap-2 mt-4">

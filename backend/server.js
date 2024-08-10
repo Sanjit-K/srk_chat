@@ -6,7 +6,10 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import {app, server} from "./socket/socket.js"
+import path from "path"
 const PORT = process.env.PORT || 5123
+
+const __dirname = path.resolve()
 
 dotenv.config()
 
@@ -18,14 +21,14 @@ app.use("/api/auth", authRoutes) //auth routes
 app.use("/api/messages", messageRoutes) //message routes
 app.use("/api/users", userRoutes) //user routes
 
+app.use(express.static(path.join(__dirname, "/frontend/dist")))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
+})
+
 
 server.listen(PORT, () => {
     connectToMongoDB()
     console.log("Server running on port 5123")
 })
 
-/*
-app.get("/", (request, response)=>{
-    response.send("hello world")
-})
-*/
