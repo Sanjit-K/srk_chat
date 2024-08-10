@@ -20,7 +20,7 @@ const Conversation = ({conversation, status}) => {
 
                 <div className='text-lg font-bold ml-2'>
                     <p>{conversation.username}</p>
-                    <span className='font-sm font-light'>{status}</span>
+                    <span className='font-sm font-light'>{conversation.status}</span>
                 </div>
                 
             </div>
